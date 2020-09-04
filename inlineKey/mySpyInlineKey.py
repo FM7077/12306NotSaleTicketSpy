@@ -54,7 +54,14 @@ def delSpyConfirm(update, context):
     objectId = query.data.split('_')[3]
     userId = query.data.split('_')[4]
     if(action == 'DELETE'):
-        print(objectId)
+        mycol.delete_one({'_id': ObjectId(objectId)})
+        keyboard = spyListInlineKeyboard(int(userId))
+        if len(keyboard) > 0:
+            markup = InlineKeyboardMarkup(keyboard)
+            query.edit_message_text('Bellow is your ticket spy', reply_markup=markup)
+        else:
+            query.edit_message_text('Can not find ticket spy.' + '\n'\
+                'Enter /spy to spy a ticket')
     else:
         spyInfo = getSpyInfoObj(objectId)
         text = getSpyInfoText(objectId)
