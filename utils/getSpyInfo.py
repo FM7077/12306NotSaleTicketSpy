@@ -12,10 +12,9 @@ def getSpyInfoObj(objectId):
 def getSpyInfoText(objectId):
     spyInfo = mycol.find_one({'_id': ObjectId(objectId)})
     text = 'Spy info:\n'\
-            'Departure station: ' + spyInfo['depStation'] + '\n'\
-            'Destination station: ' + spyInfo['desStation'] + '\n'\
+            + spyInfo['depStation'] + '  ---' + spyInfo['tno'] + '--->  ' + spyInfo['desStation'] + '\n'\
             'Depart date: ' + spyInfo['date'] + '\n'\
-            'Train no: ' + spyInfo['tno'] + '\n'\
             'Status: ' + spyInfo['status'] + '\n'\
-            'Sent?: ' + str(spyInfo['isSent'])
+            'Sent?: ' + str(spyInfo['isSent']) + '\n'\
+            'Last update time: ' + str(spyInfo['lastUpdateTime'])
     return text

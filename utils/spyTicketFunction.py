@@ -26,6 +26,7 @@ def spyTicket(spyInfo):
             'topSeat': ticket[32],
             'firstSeat': ticket[31],
             'secondSeat': ticket[30],
+            'standTicket': 0,
             'topBerth': ticket[21],
             'softBerth': ticket[23],
             'dynaBerth': ticket[33],

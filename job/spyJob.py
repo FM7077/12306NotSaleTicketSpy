@@ -15,7 +15,16 @@ def spyTicketJob(context):
     for spyInfo in spyInfos:
         result = spyTicket(spyInfo)
         if(result['status']):
-            context.bot.send_message(chat_id=spyInfo['chatId'], text='Ticket ' + result['data']['tno'] + ' is on sale')
+            context.bot.send_message(chat_id=spyInfo['chatId'], text='Ticket ' + result['data']['tno'] + ' is on sale\n'\
+                'Remain seats:\n'\
+                ' - Business seat: ' + str(result['data']['topSeat']) + '\n'\
+                ' - First class seat: ' + str(result['data']['firstSeat']) + '\n'\
+                ' - Second class seat: ' + str(result['data']['secondSeat']) + '\n'\
+                ' - Standing ticket: ' + str(result['data']['standTicket']) + '\n'\
+                ' - Business berth: ' + str(result['data']['topBerth']) + '\n'\
+                ' - Soft berth: ' + str(result['data']['softBerth']) + '\n'\
+                ' - Dynamic berth: ' + str(result['data']['dynaBerth']) + '\n'\
+                ' - Hard berth: ' + str(result['data']['hardBerth']) + '\n')
             mycol.update_one({'_id': ObjectId(spyInfo['_id'])}, 
                 {
                     '$set': {
